@@ -7,8 +7,7 @@
 > **Not an official project.** WittyRigs isn't part of, or made by, the [Sunshine](https://github.com/LizardByte/Sunshine)
 > project (LizardByte). It contains none of its code.
 
-> Read-only mirror of `modules/wittyrigs` in [WittyMediaServer](https://github.com/wittywilla/WittyMediaServer),
-> where development happens. Please open issues and pull requests there.
+> WittyRigs is developed and released here. Issues and pull requests are welcome.
 
 ## What it does
 
