@@ -10,7 +10,7 @@ For a server with a good graphics card and PC games installed on it, this finds 
 
 It looks in the usual places on Windows and macOS, and on the `PATH` everywhere. It's off until an admin turns it on. Everything that talks to Sunshine is in WittyCouch. No games come with it, and you're responsible for what you host and who you let play it.
 
-How to use it is in **Help** inside WittyMediaServer: see the game PCs guide.
+How to use it is in **Help** inside WittyMediaServer: see Game PCs.
 
 ## How to get it
 
