@@ -1,24 +1,65 @@
-<h1 align="center">WittyRigs</h1>
+# WittyRigs
 
-<p align="center">
-  <b>An advanced option: host demanding PC games on your server's own hardware.</b>
-</p>
+An advanced option: host demanding PC games on your server's own hardware. Most servers don't need this. To play on other PCs, a friend's included, use [WittyCouch](https://github.com/wittywilla/WittyCouch).
 
-> **Not an official project.** WittyRigs isn't part of, or made by, the [Sunshine](https://github.com/LizardByte/Sunshine)
-> project (LizardByte). It contains none of its code.
-
-> WittyRigs is developed and released here. Issues and pull requests are welcome.
+It isn't part of, or made by, the Sunshine project.
 
 ## What it does
 
-Most servers don't need this. To play on other PCs, a friend's included, that's [WittyCouch](https://github.com/wittywilla/WittyCouch).
+For a server with a good graphics card and PC games installed on it, this finds a separately installed Sunshine on that machine, so its games can become a library. People then play them through WittyCouch, as with any other PC.
 
-For a server with a good graphics card and PC games installed on it, this finds a separately installed Sunshine on that machine, so its games can
-become a library. It's off until an admin turns it on. People play through WittyCouch, as with any other PC.
+It looks in the usual places on Windows and macOS, and on the `PATH` everywhere. It's off until an admin turns it on. Everything that talks to Sunshine is in WittyCouch. No games come with it, and you're responsible for what you host and who you let play it.
+
+How to use it is in **Help** inside WittyMediaServer: see the game PCs guide.
+
+## How to get it
+
+An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyRigs. That needs WittyMediaServer 0.6.0-alpha or later, and it works with nothing older. The range this version fits is in `module.json`: 0.6.0-alpha through 0.6.x.
+
+Adding it brings WittyCouch, which it's built on.
+
+## What it needs
+
+- [WittyCouch](https://github.com/wittywilla/WittyCouch).
+- Sunshine, which you install yourself on the server.
+- A graphics card and PC games on that machine.
+
+It's built on [WittyModule](https://github.com/wittywilla/WittyModule) and written in Go with no cgo.
+
+## Platforms
+
+A program is built for each system below, and the server uses the right one.
+
+| System | Where it stands |
+|---|---|
+| Linux (x64, arm64, 32-bit ARM, x86) | It builds and packs, and has no tests of its own. It hasn't hosted a real game. The other CPUs are only built |
+| Windows (x64, arm64) | Built. This version hasn't been run on Windows since it became its own program |
+| macOS (Intel, Apple silicon) | Built by the release tool. It has not been run on a real Mac |
+| FreeBSD (amd64, arm64) | Cross-compiled only. It has not been run |
+
+On macOS and FreeBSD the server has no sandbox for a module's helper: it gets a small environment and a soft memory limit, and nothing more.
+
+## Building and testing
+
+You need Go 1.26 or newer. In a worktree, first run the copy of `dev-modules.mjs` kept above the repositories (`node D:/projects/dev-modules.mjs` on the development machine). It writes a `go.work` that git ignores, so the checkout builds against the repositories beside it. Never run `go work use`.
+
+```bash
+go vet ./...
+```
+
+```bash
+go test ./... -count=1
+```
+
+```bash
+go run github.com/wittywilla/wittymodule/cmd/wittymodule check .
+```
+
+The last one checks the manifest. On the same tool, `pack -targets linux/amd64 -out release .` builds a release for one system. CI also builds for every system.
 
 ## Licence
 
-Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). Sunshine is GPL-3.0 and stays a separate program, which this only looks for and talks to over the network.
+Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, keep the NOTICE attribution. It contains no Sunshine code. Sunshine is GPL-3.0 and stays a separate program, which this only looks for. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
 
 ## Legal
 
