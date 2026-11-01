@@ -11,5 +11,7 @@
   "entry": "wittyrigs-module",
   "requires": [
     "wittycouch"
-  ]
+  ],
+  "group": "games",
+  "summary": "An advanced option: host demanding PC games on your server's own hardware."
 }
