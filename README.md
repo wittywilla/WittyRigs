@@ -4,6 +4,18 @@ An advanced option: host demanding PC games on your server's own hardware. Most 
 
 It isn't part of, or made by, the Sunshine project.
 
+<!-- pictures -->
+
+![The WittyRigs page in Settings](docs/images/settings-wittyrigs.webp)
+
+<sub>Settings, WittyRigs, in WittyMediaServer.</sub>
+
+![The Game PCs page in Settings](docs/images/settings-couch.webp)
+
+<sub>Settings, Game PCs, on a server with none added yet.</sub>
+
+<!-- /pictures -->
+
 ## What it does
 
 For a server with a good graphics card and PC games installed on it, this finds a separately installed Sunshine on that machine, so its games can become a library. People then play them through WittyCouch, as with any other PC.
