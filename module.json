@@ -3,7 +3,7 @@
   "name": "WittyRigs",
   "version": "0.2.0",
   "repo": "wittywilla/WittyRigs",
-  "license": "Apache-2.0",
+  "license": "AGPL-3.0-or-later",
   "delivery": "helper",
   "api": 3,
   "minServer": "0.6.0-alpha",

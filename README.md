@@ -71,7 +71,7 @@ The last one checks the manifest. On the same tool, `pack -targets linux/amd64 -
 
 ## Licence
 
-Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, keep the NOTICE attribution. It contains no Sunshine code. Sunshine is GPL-3.0 and stays a separate program, which this only looks for. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
+GNU Affero General Public License v3.0 (or later): see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, please keep the NOTICE attribution. It contains no Sunshine code. Sunshine is GPL-3.0 and stays a separate program, which this only looks for. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
 
 ## Legal
 
@@ -101,5 +101,5 @@ To release:
 
 To take a version back, run the *withdraw* workflow from the *Actions* tab. It adds the version to a signed list on the release tagged `withdrawals`, which servers read.
 
-Licensed under Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
+Licensed under AGPL-3.0-or-later: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 <!-- /module-kit -->
