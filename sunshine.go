@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 WittyWilla and contributors
+
 // Package wittyrigs is the advanced option of hosting demanding PC games on the server's own
 // hardware, through Sunshine as a separate program that its owner installs. It finds that program.
 // Everything that talks to Sunshine is in WittyCouch's gamestream package, as it's the same
