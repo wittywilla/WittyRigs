@@ -5,6 +5,7 @@ What changed in WittyRigs, newest first. What changed before it had a repository
 
 ## Unreleased
 
+- **Module API 4:** carries `sdui.json`, its theme scope (the games accent), and needs WittyMediaServer 0.8.0-alpha or later. It adds no pages of its own: its screens are the server's.
 - Finds Sunshine where its installers put it on Windows, Linux (the package and the Flatpak), FreeBSD and macOS (Homebrew too). The server starts this helper with no PATH or ProgramFiles, so before, it only ever found the macOS app.
 - Fits servers up to 0.8.x, so WittyMediaServer 0.8.0-alpha accepts it; it was limited to 0.6.x.
 - A helper, `wittyrigs-module`, is now how a server reaches WittyRigs, with no copy compiled in.

@@ -1,0 +1,13 @@
+{
+  "format": "wittymodule-sdui",
+  "formatVersion": 1,
+  "module": "wittyrigs",
+  "catalog": 2,
+  "theme": {
+    "scope": "wittyrigs",
+    "label": "Game PCs (Sunshine)",
+    "tokens": {
+      "accent": "#7F46B8"
+    }
+  }
+}
