@@ -2,7 +2,7 @@
   "format": "wittymodule-sdui",
   "formatVersion": 1,
   "module": "wittyrigs",
-  "catalog": 2,
+  "catalog": 8,
   "theme": {
     "scope": "wittyrigs",
     "label": "Game PCs (Sunshine)",
