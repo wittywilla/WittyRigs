@@ -1,0 +1,248 @@
+{
+  "format": "wittymodule-integration",
+  "formatVersion": 1,
+  "module": "wittyrigs",
+  "host": {
+    "http": ">=1",
+    "web": ">=5",
+    "sdui": ">=8",
+    "host": ">=1"
+  },
+  "feature": "games",
+  "http": [
+    {
+      "path": "/rigs",
+      "methods": [
+        "GET"
+      ],
+      "auth": "user"
+    },
+    {
+      "path": "/rigs/find",
+      "methods": [
+        "GET"
+      ],
+      "auth": "admin",
+      "limits": {
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/rigs",
+      "methods": [
+        "POST"
+      ],
+      "auth": "admin",
+      "limits": {
+        "body": "4KB",
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/rigs/{id}",
+      "methods": [
+        "PATCH",
+        "DELETE"
+      ],
+      "auth": "admin",
+      "limits": {
+        "body": "4KB",
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/rigs/{id}/pair",
+      "methods": [
+        "POST",
+        "GET",
+        "DELETE"
+      ],
+      "auth": "admin"
+    },
+    {
+      "path": "/rigs/{id}/devices",
+      "methods": [
+        "POST"
+      ],
+      "auth": "admin",
+      "limits": {
+        "body": "4KB",
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/rigs/{id}/sync",
+      "methods": [
+        "POST"
+      ],
+      "auth": "admin",
+      "limits": {
+        "time": "3m"
+      }
+    },
+    {
+      "path": "/rigs/{id}/apps",
+      "methods": [
+        "GET"
+      ],
+      "auth": "admin"
+    },
+    {
+      "path": "/rigs/{id}/apps/{app}",
+      "methods": [
+        "PUT"
+      ],
+      "auth": "admin",
+      "limits": {
+        "body": "1KB"
+      }
+    },
+    {
+      "path": "/rigs/{id}/wake",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user"
+    },
+    {
+      "path": "/rigs/{id}/quit",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user",
+      "limits": {
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/games/{id}/play",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user",
+      "item": "id",
+      "limits": {
+        "body": "4KB",
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/games/{id}/start",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user",
+      "item": "id",
+      "plays": true,
+      "limits": {
+        "body": "1KB",
+        "time": "1m"
+      }
+    },
+    {
+      "path": "/games/{id}/stream",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user",
+      "item": "id",
+      "plays": true,
+      "limits": {
+        "body": "4KB",
+        "time": "2m"
+      }
+    },
+    {
+      "path": "/sessions/{sid}",
+      "methods": [
+        "GET",
+        "DELETE"
+      ],
+      "auth": "user",
+      "limits": {
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/sessions/{sid}/webrtc",
+      "methods": [
+        "POST"
+      ],
+      "auth": "user",
+      "limits": {
+        "body": "256KB",
+        "time": "30s"
+      }
+    },
+    {
+      "path": "/local",
+      "methods": [
+        "GET",
+        "PUT"
+      ],
+      "auth": "admin",
+      "limits": {
+        "body": "1KB",
+        "time": "30s"
+      }
+    }
+  ],
+  "web": {
+    "routes": [
+      {
+        "path": "/rigs/library/:id",
+        "frame": "app"
+      },
+      {
+        "path": "/rigs/game/:id",
+        "frame": "app"
+      },
+      {
+        "path": "/rigs/play/:id",
+        "frame": "fullscreen"
+      }
+    ],
+    "takeover": [
+      {
+        "libraryKind": "rig",
+        "route": "/rigs/library/{library}"
+      }
+    ],
+    "settings": [
+      {
+        "id": "gamerigs",
+        "label": "Game rigs",
+        "admin": true,
+        "search": [
+          "game PCs",
+          "gaming PC",
+          "Sunshine",
+          "Moonlight",
+          "pair",
+          "PIN",
+          "Wake-on-LAN",
+          "rigs"
+        ]
+      },
+      {
+        "id": "wittyrigs",
+        "label": "WittyRigs",
+        "admin": true,
+        "after": "gamerigs",
+        "search": [
+          "this server's Sunshine",
+          "host games",
+          "graphics card",
+          "WittyRigs"
+        ]
+      }
+    ]
+  },
+  "data": {
+    "store": "sqlite",
+    "backup": "library"
+  },
+  "lifecycle": {
+    "uninstall": "ask-keep-data"
+  }
+}

@@ -5,9 +5,449 @@
   "catalog": 8,
   "theme": {
     "scope": "wittyrigs",
-    "label": "Game PCs (Sunshine)",
+    "label": "Game rigs",
     "tokens": {
       "accent": "#7F46B8"
     }
-  }
+  },
+  "pages": [
+    {
+      "id": "wittyrigs",
+      "kind": "custom",
+      "title": "Game PCs",
+      "icon": "devices",
+      "description": "Game rigs on every app: the gaming PCs this profile can see, and for an administrator the PCs on the network to add and this server's own Sunshine.",
+      "scope": "wittyrigs",
+      "sections": [
+        {
+          "id": "rigs",
+          "component": "List",
+          "props": {
+            "empty": "message",
+            "emptyText": "No game PCs here yet. An administrator adds a gaming PC running Sunshine; its games become a library.",
+            "focusable": true,
+            "title": "Game PCs"
+          },
+          "source": {
+            "type": "wittyrigs.rigs"
+          }
+        },
+        {
+          "id": "found",
+          "component": "List",
+          "props": {
+            "empty": "message",
+            "emptyText": "No other PC on this network answers as Sunshine. Start Sunshine on the PC, or add it by its address in Settings, Game rigs, in a browser.",
+            "focusable": true,
+            "title": "On your network"
+          },
+          "source": {
+            "type": "wittyrigs.found"
+          },
+          "when": {
+            "admin": true
+          }
+        },
+        {
+          "id": "more",
+          "component": "List",
+          "props": {
+            "title": "This server"
+          },
+          "when": {
+            "admin": true
+          },
+          "children": [
+            {
+              "id": "local",
+              "component": "ListItem",
+              "props": {
+                "icon": "settings",
+                "subtitle": "Host demanding games on this server's own hardware",
+                "title": "This server's own Sunshine",
+                "to": "/page/wittyrigs-local"
+              }
+            }
+          ]
+        },
+        {
+          "id": "again",
+          "component": "List",
+          "props": {
+            "title": ""
+          },
+          "children": [
+            {
+              "id": "check",
+              "component": "ListItem",
+              "props": {
+                "icon": "history",
+                "op": "refresh",
+                "subtitle": "Reads again how each PC is doing.",
+                "title": "Check again"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wittyrigs-rig",
+      "kind": "custom",
+      "title": "{title}",
+      "icon": "devices",
+      "description": "One game PC on every app: wake it, end what's running, start one of its games to pick up in Moonlight, and for an administrator pair it and choose which of its apps are games. Opened with ?item=<its ID>&name=<its name>.",
+      "scope": "wittyrigs",
+      "sections": [
+        {
+          "id": "actions",
+          "component": "List",
+          "props": {
+            "focusable": true,
+            "title": ""
+          },
+          "source": {
+            "part": "actions",
+            "rig": "$item",
+            "type": "wittyrigs.rig"
+          }
+        },
+        {
+          "id": "games",
+          "component": "List",
+          "props": {
+            "empty": "message",
+            "emptyText": "No games of this PC's for you here.",
+            "focusable": true,
+            "title": "Games"
+          },
+          "source": {
+            "part": "games",
+            "rig": "$item",
+            "type": "wittyrigs.rig"
+          }
+        },
+        {
+          "id": "apps",
+          "component": "List",
+          "props": {
+            "empty": "message",
+            "emptyText": "This PC hasn't said what it offers yet. Pair it first.",
+            "focusable": true,
+            "title": "In its library"
+          },
+          "source": {
+            "part": "apps",
+            "rig": "$item",
+            "type": "wittyrigs.rig"
+          },
+          "when": {
+            "admin": true
+          }
+        },
+        {
+          "id": "others",
+          "component": "Notice",
+          "props": {
+            "text": "Starting a game here runs it on the PC; then open Moonlight, choose the PC and the game, and Resume.",
+            "tone": "info"
+          },
+          "when": {
+            "admin": false
+          }
+        },
+        {
+          "id": "again",
+          "component": "List",
+          "props": {
+            "title": ""
+          },
+          "children": [
+            {
+              "id": "check",
+              "component": "ListItem",
+              "props": {
+                "icon": "history",
+                "op": "refresh",
+                "subtitle": "Reads again how each PC is doing.",
+                "title": "Check again"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wittyrigs-local",
+      "kind": "custom",
+      "title": "This server's Sunshine",
+      "icon": "settings",
+      "description": "For administrators, on every app: whether this server's own Sunshine is offered as a library, and its state.",
+      "scope": "wittyrigs",
+      "sections": [
+        {
+          "id": "admins",
+          "component": "Notice",
+          "props": {
+            "text": "Only an administrator sets this up.",
+            "tone": "info"
+          },
+          "when": {
+            "admin": false
+          }
+        },
+        {
+          "id": "local",
+          "component": "List",
+          "props": {
+            "focusable": true,
+            "title": ""
+          },
+          "source": {
+            "type": "wittyrigs.local"
+          },
+          "when": {
+            "admin": true
+          }
+        },
+        {
+          "id": "about",
+          "component": "Notice",
+          "props": {
+            "text": "An advanced option: for a server with a good graphics card and PC games of its own. Sunshine is installed separately; WittyRigs only looks on this machine.",
+            "tone": "info"
+          },
+          "when": {
+            "admin": true
+          }
+        },
+        {
+          "id": "again",
+          "component": "List",
+          "props": {
+            "title": ""
+          },
+          "children": [
+            {
+              "id": "check",
+              "component": "ListItem",
+              "props": {
+                "icon": "history",
+                "op": "refresh",
+                "subtitle": "Reads again how each PC is doing.",
+                "title": "Check again"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "wittyrigs.rigs",
+      "label": "Game rigs",
+      "description": "The gaming PCs running Sunshine this profile can see (those with a game it may play), each with how it's doing, opening its own page.",
+      "icon": "devices",
+      "category": "",
+      "params": [
+        {
+          "name": "limit",
+          "type": "int",
+          "label": "At most",
+          "default": 50,
+          "min": 1,
+          "max": 100,
+          "since": 0
+        }
+      ],
+      "yields": [
+        "view"
+      ],
+      "cardStyle": "tile",
+      "paged": false,
+      "title": "Game PCs",
+      "since": 8
+    },
+    {
+      "type": "wittyrigs.rig",
+      "label": "A game PC",
+      "description": "One game PC ($item): with part actions, what can be done to it now (wake it, end what's running, and for an administrator pairing, with the PIN to type into Sunshine); games, its games this profile may play, each starting it on the PC; apps, for an administrator, everything it offers, each shown in its library or not.",
+      "icon": "devices",
+      "category": "",
+      "params": [
+        {
+          "name": "rig",
+          "type": "ref",
+          "label": "Game PC",
+          "help": "$item on its page.",
+          "required": true,
+          "since": 0
+        },
+        {
+          "name": "part",
+          "type": "enum",
+          "label": "Which rows",
+          "default": "actions",
+          "options": [
+            {
+              "value": "actions",
+              "label": "What can be done"
+            },
+            {
+              "value": "games",
+              "label": "Its games"
+            },
+            {
+              "value": "apps",
+              "label": "Its apps (administrators)"
+            }
+          ],
+          "since": 0
+        }
+      ],
+      "yields": [
+        "view",
+        "game"
+      ],
+      "cardStyle": "tile",
+      "paged": false,
+      "since": 8
+    },
+    {
+      "type": "wittyrigs.found",
+      "label": "PCs on the network",
+      "description": "For an administrator: the PCs on this server's network that answer as Sunshine, each to add with one press. Nothing for anyone else.",
+      "icon": "search",
+      "category": "",
+      "yields": [
+        "view"
+      ],
+      "cardStyle": "tile",
+      "paged": false,
+      "title": "On your network",
+      "since": 8
+    },
+    {
+      "type": "wittyrigs.local",
+      "label": "This server's Sunshine",
+      "description": "For an administrator: whether Sunshine is installed and running on this server, and a row to offer its games or stop. Nothing for anyone else.",
+      "icon": "settings",
+      "category": "",
+      "yields": [
+        "view"
+      ],
+      "cardStyle": "tile",
+      "paged": false,
+      "title": "This server's Sunshine",
+      "since": 8
+    }
+  ],
+  "commands": [
+    {
+      "op": "wittyrigs.rig.wake",
+      "label": "Wake it",
+      "description": "Sends a game PC (item: its ID) the wake-up signal, for anyone who can see it.",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/rigs/{item}/wake"
+    },
+    {
+      "op": "wittyrigs.rig.quit",
+      "label": "End the game",
+      "description": "Ends what's running on a game PC (item: its ID): an administrator, or whoever started it from here.",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/rigs/{item}/quit"
+    },
+    {
+      "op": "wittyrigs.rig.pair",
+      "label": "Pair",
+      "description": "Administrators: starts pairing with a game PC (item: its ID); the PIN to type into Sunshine on that PC is shown on the PC's page.",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/rigs/{item}/pair"
+    },
+    {
+      "op": "wittyrigs.rig.pairCancel",
+      "label": "Stop pairing",
+      "description": "Administrators: stops waiting for a PIN from a game PC (item: its ID).",
+      "method": "DELETE",
+      "path": "/api/modules/wittyrigs/rigs/{item}/pair"
+    },
+    {
+      "op": "wittyrigs.rig.sync",
+      "label": "Read its games again",
+      "description": "Administrators: reads a game PC's games again (item: its ID).",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/rigs/{item}/sync"
+    },
+    {
+      "op": "wittyrigs.rig.remove",
+      "label": "Remove",
+      "description": "Administrators: forgets a game PC (item: its ID), its library and its games.",
+      "method": "DELETE",
+      "path": "/api/modules/wittyrigs/rigs/{item}"
+    },
+    {
+      "op": "wittyrigs.rig.add",
+      "label": "Add",
+      "description": "Administrators: adds a PC found on the network (item: its address and port), which has to answer as Sunshine.",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/rigs",
+      "body": "{\"address\":\"{item}\"}"
+    },
+    {
+      "op": "wittyrigs.app.show",
+      "label": "Show it",
+      "description": "Administrators: puts one of a game PC's apps (item: the PC's ID; params.app: the app's) in its library.",
+      "method": "PUT",
+      "path": "/api/modules/wittyrigs/rigs/{item}/apps/{app}",
+      "body": "{\"shown\":true}",
+      "params": [
+        {
+          "name": "app",
+          "type": "string",
+          "label": "App",
+          "required": true
+        }
+      ]
+    },
+    {
+      "op": "wittyrigs.app.hide",
+      "label": "Hide it",
+      "description": "Administrators: takes one of a game PC's apps (item: the PC's ID; params.app: the app's) out of its library.",
+      "method": "PUT",
+      "path": "/api/modules/wittyrigs/rigs/{item}/apps/{app}",
+      "body": "{\"shown\":false}",
+      "params": [
+        {
+          "name": "app",
+          "type": "string",
+          "label": "App",
+          "required": true
+        }
+      ]
+    },
+    {
+      "op": "wittyrigs.game.start",
+      "label": "Start it on the PC",
+      "description": "Starts a game PC's game (item: the game's ID) on the PC, to pick up in Moonlight with Resume.",
+      "method": "POST",
+      "path": "/api/modules/wittyrigs/games/{item}/start"
+    },
+    {
+      "op": "wittyrigs.local.on",
+      "label": "Turn on",
+      "description": "Administrators: offers the games of this server's own Sunshine as a library.",
+      "method": "PUT",
+      "path": "/api/modules/wittyrigs/local",
+      "body": "{\"enabled\":true}"
+    },
+    {
+      "op": "wittyrigs.local.off",
+      "label": "Turn off",
+      "description": "Administrators: stops offering this server's own Sunshine, and takes its library away.",
+      "method": "PUT",
+      "path": "/api/modules/wittyrigs/local",
+      "body": "{\"enabled\":false}"
+    }
+  ]
 }

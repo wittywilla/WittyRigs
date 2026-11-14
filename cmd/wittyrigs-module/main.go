@@ -16,27 +16,32 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-// Command wittyrigs-module is WittyRigs as a helper process: the only way a server reaches it. It
-// only looks for Sunshine on this machine. See WittyModule for the protocol.
+// Command wittyrigs-module is WittyRigs' service (module API 5): the only way a server reaches it.
+// It answers WittyRigs' own routes (package api), talks to the gaming PCs, and holds the streams
+// of their games played in a page. It runs while it's in use, and listens on this machine only.
+// See package service in WittyModule.
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"net/http"
 
-	"github.com/wittywilla/wittymodule"
+	"github.com/wittywilla/wittymodule/sdui"
+	"github.com/wittywilla/wittymodule/service"
 	"github.com/wittywilla/wittyrigs"
+	"github.com/wittywilla/wittyrigs/api"
 )
 
 func main() {
-	wittymodule.Main(wittyrigs.ManifestJSON, func(method string, _ json.RawMessage) (any, []byte, error) {
-		if method == "find" {
-			return struct {
-				Path    string `json:"path"`
-				License string `json:"license"`
-				Source  string `json:"source"`
-			}{wittyrigs.Find(), wittyrigs.License, wittyrigs.Source}, nil, nil
-		}
-		return nil, nil, &wittymodule.CallError{Code: "unknown-method", Message: fmt.Sprintf("this version has no %q", method)}
+	service.Main(service.Config{
+		Manifest: wittyrigs.ManifestJSON,
+		Busy:     api.Busy,
+		OnStop: func() {
+			if a, err := api.Get(); err == nil {
+				a.Stop()
+			}
+		},
+		UI:        sdui.Answers{Items: api.SDUIItems},
+		HTTP:      func(mux *http.ServeMux) { api.Routes(mux); api.Watch() },
+		Lifecycle: api.Lifecycle,
 	})
 }

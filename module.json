@@ -1,17 +1,32 @@
 {
   "id": "wittyrigs",
   "name": "WittyRigs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "repo": "wittywilla/WittyRigs",
   "license": "AGPL-3.0-or-later",
   "delivery": "helper",
-  "api": 4,
+  "api": 5,
+  "dataFormat": 1,
+  "dataFrom": 1,
   "minServer": "0.8.0-alpha",
   "maxServer": "0.8.x",
   "entry": "wittyrigs-module",
+  "webEntry": "index.js",
+  "webStyle": "style.css",
+  "permissions": [
+    "network",
+    "programs",
+    "data"
+  ],
   "requires": [
-    "wittycouch"
+    "wittycouch",
+    "wittyplay"
+  ],
+  "libraries": [
+    "games"
   ],
   "group": "games",
-  "summary": "An advanced option: host demanding PC games on your server's own hardware."
+  "summary": "Gaming PCs running Sunshine as games libraries, and the advanced option of hosting demanding PC games on your server's own hardware.",
+  "updates": "All of it: game rigs (adding, pairing, their games and playing them), this server's own Sunshine, the in-page stream of a rig's game, and their screens on every app.",
+  "stays": "A rig's games library and its games stay ordinary libraries and items of the server's, so every access rule applies to them."
 }
