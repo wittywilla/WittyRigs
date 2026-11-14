@@ -125,7 +125,7 @@ func UI() *sdui.Module {
 	again := sdui.Sec("again", "List", sdui.Props("title", ""), nil,
 		item("check", "Check again", "Reads again how each PC is doing.", "history", "op", "refresh"))
 
-	rigs := sdui.Page{ID: PageRigs, Kind: "custom", Title: "Game PCs", Icon: "devices", Scope: Module,
+	rigs := sdui.Page{ID: PageRigs, Kind: "custom", Title: "Game rigs", Icon: "devices", Scope: Module,
 		Description: "Game rigs on every app: the gaming PCs this profile can see, and for an administrator the PCs on the network to add and this server's own Sunshine.",
 		Sections: []sdui.Section{
 			list("rigs", "Game PCs", sdui.Src(SourceRigs), "empty", "message", "emptyText", "No game PCs here yet. An administrator adds a gaming PC running Sunshine; its games become a library."),

@@ -14,7 +14,7 @@
     {
       "id": "wittyrigs",
       "kind": "custom",
-      "title": "Game PCs",
+      "title": "Game rigs",
       "icon": "devices",
       "description": "Game rigs on every app: the gaming PCs this profile can see, and for an administrator the PCs on the network to add and this server's own Sunshine.",
       "scope": "wittyrigs",
