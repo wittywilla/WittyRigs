@@ -1,6 +1,6 @@
 # WittyRigs
 
-An advanced option: host demanding PC games on your server's own hardware. Most servers don't need this. To play on other PCs, a friend's included, use [WittyCouch](https://github.com/wittywilla/WittyCouch).
+Gaming PCs running Sunshine as games libraries of a WittyMediaServer, and the advanced option of hosting demanding PC games on your server's own hardware. To play on a PC of your own that isn't shared with the server's people, a friend's included, use [WittyCouch](https://github.com/wittywilla/WittyCouch).
 
 It isn't part of, or made by, the Sunshine project.
 
@@ -18,21 +18,23 @@ It isn't part of, or made by, the Sunshine project.
 
 ## What it does
 
-For a server with a good graphics card and PC games installed on it, this finds a separately installed Sunshine on that machine, so its games can become a library. People then play them through WittyCouch, as with any other PC.
+- **Game rigs.** An administrator adds a gaming PC running Sunshine (found on the network, or by its address) and pairs it once with a PIN. Its games become a games library on the server, so every access rule applies to them: library limits, age limits, and single games given to a Kids profile. A person plays one in the page, in the Moonlight app, or starts it on the PC to pick up with Resume (an Apple TV, say). It wakes a sleeping PC, ends what's running, and follows a PC to a new address.
+- **This server's own Sunshine.** Off until an administrator turns it on: it finds a separately installed Sunshine on the server's machine, in the usual places on Windows, macOS and Linux, and on the `PATH`, and offers its games as a library.
 
-It looks in the usual places on Windows and macOS, and on the `PATH` everywhere. It's off until an admin turns it on. Everything that talks to Sunshine is in WittyCouch. No games come with it, and you're responsible for what you host and who you let play it.
+It's a module of [module API 5](https://github.com/wittywilla/WittyMediaServer/blob/master/docs/MODULES-API5.md): it owns the whole feature. Its service answers its own routes at `/api/modules/wittyrigs/...` (`integration.json`), keeps its rigs in a database of its own, and asks the server only for what the server has: the libraries and items that hold each rig's games, who may see them, and the Moonlight host program. Its web part draws its screens in the browser, and its `sdui.json` pages (Game PCs, one PC, this server's Sunshine) are what every app draws, the Apple TV and Android TV apps included, with a remote: nothing on them needs typing.
 
-How to use it is in **Help** inside WittyMediaServer: see Game PCs.
+No games come with it, and you're responsible for what you host and who you let play it. How to use it is in **Help** inside WittyMediaServer: see Game PCs.
 
 ## How to get it
 
-An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyRigs. That needs WittyMediaServer 0.8.0-alpha or later, as this version carries module API 4 (its own server-driven UI, `sdui.json`), and it works with nothing older. The range it fits is in `module.json`: 0.8.0-alpha through 0.8.x.
+An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyRigs. That needs a WittyMediaServer of module API 5, and it works with nothing older. The range it fits is in `module.json`: 0.8.0-alpha through 0.8.x.
 
-Adding it brings WittyCouch, which it's built on.
+Adding it brings WittyCouch (with WittyCouch Host, the program that plays a PC's games in a page) and WittyPlay, whose games frame its pages sit in.
 
 ## What it needs
 
-- [WittyCouch](https://github.com/wittywilla/WittyCouch).
+- [WittyCouch](https://github.com/wittywilla/WittyCouch), whose protocol code it's built on, and WittyCouch Host to play in a page.
+- [WittyPlay](https://github.com/wittywilla/WittyPlay).
 - Sunshine, which you install yourself on the server.
 - A graphics card and PC games on that machine.
 

@@ -1,0 +1,20 @@
+{
+  "name": "@wittywilla/wittyrigs",
+  "version": "0.4.0",
+  "private": true,
+  "description": "The browser half of WittyRigs: a gaming PC's library and games, playing them in the page, and its Settings sections in WittyMediaServer.",
+  "license": "AGPL-3.0-or-later",
+  "author": "WittyWilla (https://github.com/wittywilla)",
+  "type": "module",
+  "main": "./web/index.ts",
+  "scripts": {
+    "build:bundle": "node ${WITTYMODULE:-../WittyModule}/kit/web/build-bundle.mjs ."
+  },
+  "repository": "github:wittywilla/WittyRigs",
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.18.5",
+    "vite": "^8.3.5"
+  }
+}

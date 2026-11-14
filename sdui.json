@@ -449,5 +449,56 @@
       "path": "/api/modules/wittyrigs/local",
       "body": "{\"enabled\":false}"
     }
+  ],
+  "settings": [
+    {
+      "id": "wittyrigs",
+      "title": "Game rigs",
+      "icon": "devices",
+      "groups": [
+        {
+          "title": "Playing in a page",
+          "footer": "A stream goes from the PC through this server to the browser, at up to its full bitrate. The server doesn't re-encode it.",
+          "rows": [
+            {
+              "key": "maxStreams",
+              "kind": "int",
+              "label": "Streams at once",
+              "default": 2,
+              "min": 1,
+              "max": 16
+            }
+          ]
+        },
+        {
+          "title": "Reaching browsers away from home",
+          "footer": "Nothing needed at home. Never forward Sunshine's own ports, and never port 47990, its web interface.",
+          "rows": [
+            {
+              "key": "udpPort",
+              "kind": "int",
+              "label": "UDP port",
+              "help": "One port for every stream, to forward on a router or publish from a container. 0: any free port.",
+              "default": 0,
+              "min": 0,
+              "max": 65535
+            },
+            {
+              "key": "publicIp",
+              "kind": "string",
+              "label": "This server's public address",
+              "maxLength": 100
+            },
+            {
+              "key": "stun",
+              "kind": "string",
+              "label": "STUN server",
+              "help": "None: nothing leaves your network.",
+              "maxLength": 200
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

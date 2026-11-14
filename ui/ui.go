@@ -26,6 +26,14 @@ const (
 	SourceLocal = Module + ".local"
 )
 
+// Settings (an administrator's, for the whole server).
+const (
+	SettingMaxStreams = "maxStreams"
+	SettingUDPPort    = "udpPort"
+	SettingPublicIP   = "publicIp"
+	SettingSTUN       = "stun"
+)
+
 // Pages.
 const (
 	PageRigs  = Module
@@ -148,5 +156,17 @@ func UI() *sdui.Module {
 			again,
 		}}
 	m.AddPage(local)
+
+	// Playing a PC's game in a page: the stream passes through this server.
+	m.AddSettings(sdui.SettingsPage{ID: Module, Title: "Game rigs", Icon: "devices", Groups: []sdui.SettingsGroup{
+		{Title: "Playing in a page", Footer: "A stream goes from the PC through this server to the browser, at up to its full bitrate. The server doesn't re-encode it.", Rows: []sdui.SettingRow{
+			{Key: SettingMaxStreams, Kind: "int", Label: "Streams at once", Default: 2, Min: sdui.Int(1), Max: sdui.Int(16)},
+		}},
+		{Title: "Reaching browsers away from home", Footer: "Nothing needed at home. Never forward Sunshine's own ports, and never port 47990, its web interface.", Rows: []sdui.SettingRow{
+			{Key: SettingUDPPort, Kind: "int", Label: "UDP port", Help: "One port for every stream, to forward on a router or publish from a container. 0: any free port.", Default: 0, Min: sdui.Int(0), Max: sdui.Int(65535)},
+			{Key: SettingPublicIP, Kind: "string", Label: "This server's public address", MaxLength: 100},
+			{Key: SettingSTUN, Kind: "string", Label: "STUN server", Help: "None: nothing leaves your network.", MaxLength: 200},
+		}},
+	}})
 	return m
 }

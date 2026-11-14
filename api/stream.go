@@ -7,6 +7,7 @@ import (
 	"context"
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"net"
 	"net/http"
@@ -17,6 +18,7 @@ import (
 
 	"github.com/wittywilla/wittycouch/gamestream"
 	"github.com/wittywilla/wittycouch/relay"
+	"github.com/wittywilla/wittymodule/host"
 	"github.com/wittywilla/wittymodule/service"
 )
 
@@ -24,13 +26,29 @@ import (
 // to the PC, and the stream reaches the browser over WebRTC. It uses this server's own pairing,
 // and the same checks as any other way of playing it.
 
-// Settings of the module's own (its database) for streams.
-const (
-	settingMaxStreams = "maxStreams" // at most this many streams at once; 2 when unset
-	settingPublicIP   = "publicIp"
-	settingSTUN       = "stun"
-	settingUDPPort    = "udpPort"
-)
+// streamSettings are the module's settings for streams (sdui.json, set by an administrator in
+// every app's Settings, Modules), as the server says them; their defaults where it can't.
+type streamSettings struct {
+	MaxStreams int    `json:"maxStreams"`
+	UDPPort    int    `json:"udpPort"`
+	PublicIP   string `json:"publicIp"`
+	STUN       string `json:"stun"`
+}
+
+func (a *App) streamSettings(ctx context.Context) streamSettings {
+	st := streamSettings{MaxStreams: 2}
+	vals, err := a.Host.Settings(ctx, host.On{})
+	if err != nil {
+		return st
+	}
+	if b, err := json.Marshal(vals); err == nil {
+		_ = json.Unmarshal(b, &st)
+	}
+	if st.MaxStreams < 1 {
+		st.MaxStreams = 2
+	}
+	return st
+}
 
 // stream is one stream, and who it belongs to.
 type stream struct {
@@ -111,10 +129,8 @@ func (a *App) startStream(ctx context.Context, user int64, client *gamestream.Ri
 	if err != nil {
 		return nil, relay.ErrNoProgram
 	}
-	limit, _ := strconv.Atoi(a.DB.Setting(ctx, settingMaxStreams, "2"))
-	if limit < 1 {
-		limit = 2
-	}
+	set := a.streamSettings(ctx)
+	limit := set.MaxStreams
 	a.mu.Lock()
 	var mine []*stream
 	for _, st := range a.streams {
@@ -196,14 +212,14 @@ func (a *App) startStream(ctx context.Context, user int64, client *gamestream.Ri
 			a.Log.Info("rigs: a stream ended", "user", user)
 		},
 	}
-	if v := strings.TrimSpace(a.DB.Setting(ctx, settingPublicIP, "")); v != "" {
+	if v := strings.TrimSpace(set.PublicIP); v != "" {
 		opts.PublicIP = []string{v}
 	}
-	if v := strings.TrimSpace(a.DB.Setting(ctx, settingSTUN, "")); v != "" {
+	if v := strings.TrimSpace(set.STUN); v != "" {
 		opts.STUN = strings.Fields(strings.ReplaceAll(v, ",", " "))
 	}
-	if p, err := strconv.Atoi(a.DB.Setting(ctx, settingUDPPort, "")); err == nil && p > 1024 {
-		opts.UDPPort = p
+	if set.UDPPort > 1024 {
+		opts.UDPPort = set.UDPPort
 	}
 	sess, err := relay.New(ctx, opts)
 	if err != nil {
