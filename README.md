@@ -2,6 +2,8 @@
 
 Gaming PCs running Sunshine as games libraries of a WittyMediaServer, and the advanced option of hosting demanding PC games on your server's own hardware. To play on a PC of your own that isn't shared with the server's people, a friend's included, use [WittyCouch](https://github.com/wittywilla/WittyCouch).
 
+It's a module of [WittyMediaServer](https://github.com/wittywilla/WittyMediaServer) ([wittymediaserver.com](https://wittymediaserver.com)).
+
 It isn't part of, or made by, the Sunshine project.
 
 <!-- pictures -->
@@ -27,9 +29,9 @@ No games come with it, and you're responsible for what you host and who you let 
 
 ## How to get it
 
-An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyRigs. That needs a WittyMediaServer of module API 5, and it works with nothing older. The range it fits is in `module.json`: 0.8.0-alpha through 0.8.x.
+An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyRigs. This version carries module API 5, so it needs WittyMediaServer 0.8.0-alpha or later and works with nothing older. The range it fits is in `module.json`: 0.8.0-alpha through 0.8.x.
 
-Adding it brings WittyCouch (with WittyCouch Host, the program that plays a PC's games in a page) and WittyPlay, whose games frame its pages sit in.
+Adding it brings WittyCouch (with WittyCouch Host, the program that plays a PC's games in a page) and WittyPlay, whose games frame its pages sit in. WittyPlay has a known issue with the 0.8.x server, that its emulation isn't working yet: see [its README](https://github.com/wittywilla/WittyPlay#readme).
 
 ## What it needs
 
@@ -46,7 +48,7 @@ A program is built for each system below, and the server uses the right one.
 
 | System | Where it stands |
 |---|---|
-| Linux (x64, arm64, 32-bit ARM, x86) | It builds and packs, and has no tests of its own. It hasn't hosted a real game. The other CPUs are only built |
+| Linux (x64, arm64, 32-bit ARM, x86) | It builds and packs, and CI runs its tests on x64. It hasn't hosted a real game. The other CPUs are only built |
 | Windows (x64, arm64) | Built. This version hasn't been run on Windows since it became its own program |
 | macOS (Intel, Apple silicon) | Built by the release tool. It has not been run on a real Mac |
 | FreeBSD (amd64, arm64) | Cross-compiled only. It has not been run |
@@ -70,6 +72,16 @@ go run github.com/wittywilla/wittymodule/cmd/wittymodule check .
 ```
 
 The last one checks the manifest. On the same tool, `pack -targets linux/amd64 -out release .` builds a release for one system. CI also builds for every system.
+
+The web part needs Node.js and a WittyModule checkout (`WITTYMODULE`, or `../WittyModule`), and CI doesn't build it:
+
+```bash
+npm install
+```
+
+```bash
+npm run build:bundle
+```
 
 ## Licence
 
