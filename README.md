@@ -87,15 +87,6 @@ npm run build:bundle
 
 GNU Affero General Public License v3.0 (or later): see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, please keep the NOTICE attribution. It contains no Sunshine code. Sunshine is GPL-3.0 and stays a separate program, which this only looks for. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
 
-## Legal
-
-WittyRigs is an independent open-source project. It isn't associated with, sponsored by or endorsed by
-the Sunshine or Moonlight projects, or any game publisher. Sunshine is a separate program you install
-yourself, under its own license, and no games come with this. You're responsible for what you host and
-who you let play it. Any third-party names here only describe what it works with, and belong to their
-owners. It's provided “as is”, with no warranty; see [LICENSE](LICENSE). Local law applies to how you use
-it. This isn't legal advice.
-
 <!-- module-kit -->
 ## Releasing
 
@@ -117,3 +108,12 @@ To take a version back, run the *withdraw* workflow from the *Actions* tab. It a
 
 Licensed under AGPL-3.0-or-later: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 <!-- /module-kit -->
+
+## Legal
+
+WittyRigs is an independent open-source project. It isn't associated with, sponsored by or endorsed by
+the Sunshine or Moonlight projects, or any game publisher. Sunshine is a separate program you install
+yourself, under its own license, and no games come with this. You're responsible for what you host and
+who you let play it. Any third-party names here only describe what it works with, and belong to their
+owners. It's provided “as is”, with no warranty; see [LICENSE](LICENSE). Local law applies to how you use
+it. This isn't legal advice.
