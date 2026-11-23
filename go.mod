@@ -3,7 +3,7 @@ module github.com/wittywilla/wittyrigs
 go 1.26.0
 
 require (
-	github.com/wittywilla/wittycouch v0.3.0
+	github.com/wittywilla/wittycouch v0.4.1
 	github.com/wittywilla/wittymodule v0.5.4
 	modernc.org/sqlite v1.62.0
 )

@@ -46,8 +46,8 @@ github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec h1:W09IVJc94
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec/go.mod h1:qqbHyh8v60DhA7CoWK5oRCqLrMHRGoxYCSS9EjAz6Eo=
 github.com/stretchr/testify v1.12.1 h1:EuwCh5fleGS7H32xRwO3wRGT7DxrDhLAT6FF8MpWDWE=
 github.com/stretchr/testify v1.12.1/go.mod h1:MDEgiDPPsNp5cuIrHPPCyornHKgEVbtFUmoNlxoYthg=
-github.com/wittywilla/wittycouch v0.3.0 h1:UwHnRGpuNbBf+0JZw47k3OF+ceyr3bW+lS61T2Ub4jA=
-github.com/wittywilla/wittycouch v0.3.0/go.mod h1:hW/yl7/c2LBYMScRBxbA6KAeQ65CuXjk2gTlTnTkjqs=
+github.com/wittywilla/wittycouch v0.4.1 h1:2OwVFOqVqlfXFSixqw8WK8GH2tH6LFEHPgiZlnB3pQ8=
+github.com/wittywilla/wittycouch v0.4.1/go.mod h1:bZhdcz2xi3BJL6a0jlSziSr8S0dHTmyuFMCz7RQp5rQ=
 github.com/wittywilla/wittymodule v0.5.4 h1:6twJRfowxf8wGZBotJSk8Em2jj5ktUVxlN99aNcPsyI=
 github.com/wittywilla/wittymodule v0.5.4/go.mod h1:s4SONzwSeE/5v+HbhiO4H2CaIOxZpjS187rwwQY0kj8=
 github.com/wlynxg/anet v0.0.5 h1:J3VJGi1gvo0JwZ/P1/Yc/8p63SoW98B5dHkYDmpgvvU=
