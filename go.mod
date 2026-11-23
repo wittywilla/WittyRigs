@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/wittywilla/wittycouch v0.3.0
-	github.com/wittywilla/wittymodule v0.5.4
+	github.com/wittywilla/wittymodule v0.5.5
 	modernc.org/sqlite v1.62.0
 )
 
