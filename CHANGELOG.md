@@ -3,6 +3,15 @@
 What changed in WittyRigs, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.4.2
+
+- **A television says what its remote and controller can do.** In TV mode the game screen no longer tells you to click the picture or press Esc, and the game menu says to hold Start, Back and both shoulders, without the computer's key combination.
+- **Button hints follow TV mode:** with the server's TV mode on, the hints show the remote's OK and Back instead of a keyboard's keys.
+
+## Developer notes for 0.4.2
+
+- `onTv()` (the server's `html.tv-mode`) gates the keyboard and mouse hint and the menu's key combination in `web/Player.tsx`; `isTV()` in `web/prompts.tsx` also counts TV mode, so prompts use `REMOTE` caps (docs/TV-MODE.md).
+
 ## 0.4.1
 
 - The README's pictures are retaken from WittyMediaServer 0.8.0-alpha.
