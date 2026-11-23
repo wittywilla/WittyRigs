@@ -3,6 +3,10 @@
 What changed in WittyRigs, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.4.3
+
+- **Updated dependencies:** modernc.org/sqlite from 1.61.1 to 1.62.0.
+
 ## 0.4.2
 
 - **A television says what its remote and controller can do.** In TV mode the game screen no longer tells you to click the picture or press Esc, and the game menu says to hold Start, Back and both shoulders, without the computer's key combination.

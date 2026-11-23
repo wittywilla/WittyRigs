@@ -1,6 +1,6 @@
 {
   "name": "@wittywilla/wittyrigs",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "description": "The browser half of WittyRigs: a gaming PC's library and games, playing them in the page, and its Settings sections in WittyMediaServer.",
   "license": "AGPL-3.0-or-later",
