@@ -3,6 +3,10 @@
 What changed in WittyRigs, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.4.4
+
+- **Nothing on the game PC pages slides under the top bar.** A backdrop, a section a link jumps to and the on-screen keyboard's side panel sit below the bar however tall it is, using the room the bar measures (`--bar-space`) instead of a fixed height. Older servers keep the old numbers.
+
 ## 0.4.3
 
 - **Updated dependencies:** modernc.org/sqlite from 1.61.1 to 1.62.0.
